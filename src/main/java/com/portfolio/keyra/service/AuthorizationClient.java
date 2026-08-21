@@ -48,7 +48,6 @@ public class AuthorizationClient {
                     .retrieve()
                     .body(CanResponse.class);
 
-            System.out.println(response);
             return response != null && response.can();
         } catch (Exception ex) {
             return false; // fail-closed

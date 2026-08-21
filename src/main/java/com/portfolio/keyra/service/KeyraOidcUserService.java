@@ -42,8 +42,6 @@ public class KeyraOidcUserService extends OidcUserService {
                     .forEach(authorities::add);
         }
 
-        System.out.println(oidcUser.getClaims());
-
         return new DefaultOidcUser(
                 authorities,
                 oidcUser.getIdToken(),

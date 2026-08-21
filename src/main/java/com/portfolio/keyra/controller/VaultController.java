@@ -60,9 +60,6 @@ public class VaultController {
                            HttpServletRequest request) {
 
         User user = sessionService.getCurrentUser(authentication);
-        System.out.println("Authentication: "+authentication);
-
-        System.out.println("Session: "+session);
 
         boolean locked = user.isTwoFactorEnabled()
                 && !Boolean.TRUE.equals(session.getAttribute(VaultUnlockFilter.VAULT_UNLOCKED_ATTR));

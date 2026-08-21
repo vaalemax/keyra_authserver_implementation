@@ -26,7 +26,7 @@
 
     <ul class="navbar__menu" sec:authorize="isAuthenticated()">
         <li><a th:href="@{/vault}">Vault</a></li>
-        <li sec:authorize="hasRole('admin')">
+        <li sec:authorize="hasRole('ADMIN')">
             <a th:href="@{/activity}">Activity</a>
         </li>
         <li><a th:href="@{/settings/2fa}">2FA</a></li>
