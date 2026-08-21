@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <link rel="icon" type="image/x-icon" th:href="@{/favicon.ico}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login – Keyra</title>
+
+    <th:block th:replace="~{fragments :: styles}"></th:block>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+
+<body>
+<div class="login-page">
+
+    <div class="login-page__bg">
+        <div class="login-page__grid"></div>
+        <div class="login-page__glow login-page__glow--1"></div>
+        <div class="login-page__glow login-page__glow--2"></div>
+    </div>
+
+    <div class="login-container">
+
+        <div class="login-logo">
+            <div class="login-logo__icon">🔐</div>
+            <span class="login-logo__text">Key<span>ra</span></span>
+            <span class="login-logo__sub">Your credentials, in a safe space.</span>
+        </div>
+
+        <div class="login-card">
+
+            <div th:replace="~{fragments :: messages}"></div>
+
+            <div th:if="${param.error}" class="login-error">
+                <span class="alert-icon">✕</span>
+                <span>Something went wrong during login. Please try again.</span>
+            </div>
+
+            <div th:if="${param.timeout}" class="login-error" style="border-color: var(--warning); background: var(--warning-bg); color: var(--warning);">
+                <span class="alert-icon">⚠</span>
+                <span>Your session has expired. Please log in again.</span>
+            </div>
+
+            <div th:if="${param.logout}" class="alert alert-success" style="margin-bottom:18px;">
+                <span class="alert-icon">✔</span>
+                <span>Logout completed successfully.</span>
+            </div>
+
+            <a th:href="@{/oauth2/authorization/keyra}"
+               class="btn btn-primary btn-lg btn-full btn-submit"
+               style="display:block; text-align:center; text-decoration:none;">
+                Log in with OAuth 2.0
+            </a>
+
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments :: scripts}"></div>
+
+</body>
+</html>
