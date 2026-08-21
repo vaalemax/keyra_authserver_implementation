@@ -1,6 +1,6 @@
 # 🔐 Keyra — OAuth2/OIDC Edition
 
-A variant of [Keyra](#https://github.com/vaalemax/keyra) (the original standalone password manager) rebuilt to delegate
+A variant of [Keyra](https://github.com/vaalemax/keyra) (the original standalone password manager) rebuilt to delegate
 identity entirely to a custom-built OAuth2/OIDC authorization server — exploring what
 changes, architecturally and security-wise, when authentication moves from "the app owns
 your credentials" to "the app trusts a third party's tokens."
@@ -11,7 +11,7 @@ ABAC/RBAC engine. This repository shows that server actually being used by a rea
 application, not just tested in isolation.
 
 > Looking for the original, self-contained Keyra (local login, master-password-derived
-> encryption, TOTP as a second login factor)? See the [original repository](#https://github.com/vaalemax/keyra).
+> encryption, TOTP as a second login factor)? See the [original repository](https://github.com/vaalemax/keyra).
 
 ---
 
