@@ -2,46 +2,46 @@ services:
 
   db:
     image: postgres:16-alpine
-    container_name: keyra-db
+    container_name: keyra_authserver-db
     restart: unless-stopped
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-keyra}
+      POSTGRES_DB: ${POSTGRES_DB:-keyra_authserver}
       POSTGRES_USER: ${POSTGRES_USER:-keyra}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
     volumes:
-      - keyra-db-data:/var/lib/postgresql/data
+      - keyra_authserver-db-data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5434:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-keyra} -d ${POSTGRES_DB:-keyra}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-keyra} -d ${POSTGRES_DB:-keyra_authserver}"]
       interval: 5s
       timeout: 5s
       retries: 10
     networks:
-      - keyra-network
+      - keyra_authserver-network
 
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: keyra-app
+    container_name: keyra_authserver-app
     restart: unless-stopped
     depends_on:
       db:
         condition: service_healthy
     environment:
-      DB_URL: jdbc:postgresql://db:5432/${POSTGRES_DB:-keyra}
+      DB_URL: jdbc:postgresql://db:5432/${POSTGRES_DB:-keyra_authserver}
       DB_USERNAME: ${POSTGRES_USER:-keyra}
       DB_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
       COOKIE_SECURE: ${COOKIE_SECURE:-false}
     ports:
       - "8081:8081"
     networks:
-      - keyra-network
+      - keyra_authserver-network
 
 networks:
-  keyra-network:
+  keyra_authserver-network:
     driver: bridge
 
 volumes:
-  keyra-db-data:
+  keyra_authserver-db-data:
