@@ -37,6 +37,7 @@ spring:
             scope:
               - openid
               - profile
+              - offline_access
         provider:
           keyra:
             issuer-uri: http://localhost:9000/keyra
